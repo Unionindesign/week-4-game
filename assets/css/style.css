@@ -1,0 +1,26 @@
+.container {
+	padding: 0;
+	margin: auto;
+	background-color: #000000;
+	width: 100%;
+	color: #fff;
+
+
+}
+
+header {
+
+}
+
+.characterSelect {
+	height: 100px;
+}
+
+.battleBox {
+
+}
+
+footer {
+	height: 80px
+	background-color: #777777;
+}
