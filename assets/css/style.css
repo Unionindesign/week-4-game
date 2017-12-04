@@ -8,31 +8,88 @@ body {
 	width: 100%;
 }
 
-.jumbotron.h1 {
-	color: orange;
+.top-banner {
+	text-align: center;
+	font-family: 'Monoton', cursive;
+	color:#FE642E;
+
 }
 
-.gameReg {
+.character {
+  width: 200px;
+  background-color: #fff;
+  margin: 40px 40px 40px 40px;
+  cursor: pointer;
+  display: inline-block;
+  border-radius: 5px;
+}
+.character img {
+  border: 0 none;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  height: 200px;
+}
+.character-name {
+  text-align: center;
+  text-transform: capitalize;
+  line-height: 30px;
+  font-family: 'Itim', cursive;
+  font-size: 20px;
+}
+.character-health {
+  text-align: center;
+}
+
+/*.select-charImg {
+	padding: 5%;
+	height: 250px;	
+	width: 250px;
+}*/
+#main-game-section {
+	clear: both;
 	background-image: url("../images/bkrndStage.png");
+	background-repeat: none;
 	width: 100%;
-	height: 720px;
+	height: 760px;
+	border-radius: 20px;
 
 }
 
-.player-area{
+#selected-character {
 	float: left;
-	
 }
 
-.joke-display {
+#show-opponents {
+	float: right;
+}
+
+#joke-button {
+	visibility: hidden;
+
+#player-area {
+	float: left;
+}
+
+#joke-display {
 	float: left;
 	background-color: #fff;
 }
 
-.opponent-area {
+#opponent-area {
 	float: right;
+}
 
-    height: 450px;
+.opponent {
+	width: 153px;
+	margin: 5px;
+  border-style: solid;
+  border-color: black;
+  border-width: 1px;
+  cursor: pointer;
+  display: inline-block;
+  background-color: red;
+  float: left;
 }
 
 .game-results {
