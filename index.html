@@ -8,113 +8,140 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Monoton" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="./assets/css/style.css">
   </head>
-  <body>
+<body>
   
-  <div class="container">
+<div class="container">
     
     <!-- =========== Header area ============= -->
 <div class="row">
   <div class="col-12">
-    <div class="jumbotron">
-      <h1>90s games - Yo mama joke comedy laugh off!</h1>
-      <h3>Choose a character, and beat all three comics to win!</h3>
+    <div class="top-banner">
+      <h1>Yo mama joke comedy laugh off!</h1>
+      <h4>Click to select a comic - beat the others to win!</h4>
     </div>
   </div>
  </div>   
 
+<!-- ============= SELECT CHARACTER ========= -->
 
-<!-- ============== ACCORDION =============== -->
-<div class="row">
-  <div class="col-12">
-
-    <div id="accordion" role="tablist">
-      <div class="card">
-        <div class="card-header" role="tab" id="headingOne">
-          <h5 class="mb-0">
-            <a data-toggle="collapse" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-            Select your character:
-            </a>
-          </h5>
-        </div>
-
-        <div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne" data-parent="#accordion">
-          <div class="card-body">
-            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-          </div>
+<div id="main-game-section">
+  
+  <div id="characters-section">
+      <div class="row">
+        <div class="col-12">
+          <div class="container section-title"><h2 class='text-center'>Select Your Character</h2></div>
         </div>
       </div>
-      <div class="card">
-        <div class="card-header" role="tab" id="headingTwo">
-          <h5 class="mb-0">
-            <a class="collapsed text-center" data-toggle="collapse" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-              Choose your oponent:
-            </a>
-          </h5>
-        </div>
-        <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo" data-parent="#accordion">
-          <div class="card-body">
-            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-          </div>
-        </div>
-      </div>
-    </div>
-   </div> 
-
-</div>
-
-<!--   <div class="card">      
-    <div class="card-header" role="tab" id="headingThree">
-      <h5 class="mb-0">
-        <a class="collapsed" data-toggle="collapse" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-          remove Item #3
-        </a>
-      </h5>
-    </div>
-    <div id="collapseThree" class="collapse" role="tabpanel" aria-labelledby="headingThree" data-parent="#accordion">
-      <div class="card-body">
-        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-      </div>
-    </div>
-  </div> -->
-
-
-
-  <!-- This is where the GAME lives -->
-<div class="row">
-  <div class="col-12">
-    <div class="gameReg">
-
-      <div class="col-4">
-        <div class="player-area">
-          <p>Player 1</p>
-        </div>
-      </div>
-
-      <div class="col-4">
-        <div class="joke-display">
-          <p>display all of the jokes here...Yo mama so fat, the back of her neck looks like a pack of hot dogs!</p>
-        </div>
-      </div>
+  </div>
       
-      <div class="col-4">
-        <div class="opponent-area">
-          <p>Opponent area</p>
+
+
+  <!-- ============= display all characters in Cards =============== 
+ 
+
+
+  <div class="row">
+  
+    <div class="col-3">
+      <div class="card" style="float: left;">
+        <img class="card-img-top select-charImg" src="./assets/images/thumbEddie.png" alt="Card image cap">
+        <div class="card-body">
+        <p class="card-text text-center">Eddie Murphy | Rating: 80</p>
         </div>
       </div>
+    </div>
 
+    <div class="col-3">
+      <div class="card" style="float: left;">
+        <img class="card-img-top select-charImg" src="./assets/images/thumbChappelle.png" alt="Card image cap">
+        <div class="card-body">
+        <p class="card-text text-center">Dave Chappelle | Rating: 70</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-3">
+      <div class="card" style="float: left;">
+        <img class="card-img-top select-charImg" src="./assets/images/thumbChris.png" alt="Card image cap">
+        <div class="card-body">
+        <p class="card-text text-center">Chris Rock | Rating: 100</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-3">
+      <div class="card" style="float: left;">
+        <img class="card-img-top select-charImg" src="./assets/images/thumbRichard.png" alt="Card image cap">
+        <div class="card-body">
+        <p class="card-text text-center">Richard Pryor | Rating: 120</p>
+        </div>
+      </div>
     </div>
   </div>
 </div>
 
+  -->
+
+
+
+  
+<!-- ============== SELECTED CHAR / OPPONENTS (2 Col) ============ -->
 <div class="row">
+
+    <div class="col-3">  
+      <div id="selected-character-section">
+        <div class="section-title container"></div>
+        <div id="selected-character"></div>
+      </div>
+    </div> 
+     
+    <div class="col-9">          
+      <div id="show-opponents">Show the select-opponent options on right
+        <div class="section-title"></div>
+      </div>
+     </div>         
+   </div>
+        
+
+  <!-- This is where the GAME lives -->
+<div class="row">
+  <div class="gameReg">
+
+    <div class="col-4">
+      <div id="player-area">
+        <p>Player 1</p>
+        <button class="btn" id="joke-button">Yo Mama Joke</button>
+        <div class="jumbotron" id="gameMessage"></div>
+      </div>
+    </div>
+
+    <div class="col-4">
+      <div id="joke-display">
+        <button class="btn" id="joke-button">Yo Mama Joke</button>
+        <div class="jumbotron" id="gameMessage"></div>
+      </div>
+    </div>
+    
+    <div class="col-4">
+      <div id="opponent-area">
+        <p>Opponent area</p>
+      </div>
+    </div>
+
+  </div>
+  
+</div>
+
+<!-- <div class="row">
   <div class="col-12">
     <div class="game-results">
       <p> Show laugh points etc. down here</p>
     </div>
   </div>
-</div>
+</div> -->
 
 <footer>
   <p class="text-center">copywright &copy 2017 Union in Design</p>
@@ -125,6 +152,8 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+
+      <script type="text/javascript" src="./assets/javascript/game.js"></script>
 
   </div>
   </body>
