@@ -57,7 +57,7 @@ let characters = {
 		name: 'Eddie Murphy',
 		health: 80,
 		attack: 15,
-		comebackPower: 20,
+		enemyAttackBack: 20,
 		imageUrl: "assets/images/thumbEddie.png",
 		jokes: ["Yo mama so fat the back of her neck looks like a pack of hot dogs", 
 		"Yo mamma so fat I took a picture of her last Christmas and its still printing", 
@@ -70,7 +70,7 @@ let characters = {
 		name: 'Dave Chapelle',
 		health: 70,
 		attack: 10,
-		comebackPower: 33,
+		enemyAttackBack: 33,
 		imageUrl: "assets/images/thumbChappelle.png",
 		jokes: [
 		"Yo momma so fat when she goes camping the bears hide their food.",
@@ -84,7 +84,7 @@ let characters = {
 		name: 'Chris Rock',
 		health: 100,
 		attack: 20,
-		comebackPower: 18,
+		enemyAttackBack: 18,
 		imageUrl: "assets/images/thumbChris.png",
 		jokes: [
 		"Yo mama so fat Mount Everest tried to climb her.",
@@ -98,7 +98,7 @@ let characters = {
 		name: 'Richard Pryor',
 		health: 120,
 		attack: 25,
-		comebackPower: 33,
+		enemyAttackBack: 33,
 		imageUrl: "assets/images/thumbRichard.png",
 		jokes: [
 		"Yo' Mama is so stupid, when they said, 'Order in the court,' she asked for fries and a shake.",
@@ -106,227 +106,192 @@ let characters = {
 		"Yo Momma So Fat The Only Letters She Knows In The Alphabet Are K.F.C",	
 		"Yo mamma is so fat she doesn't need the internet, because she's already world wide.",
 		]
-	},
+	}
 };
 
 var currSelectedCharacter;
 var currDefender;
-var comedians = [];
+var combatants = [];
 var indexofSelChar;
 var attackResult;
 var turnCounter = 1;
 var killCount = 0;
 
 var renderOne = function(character, renderArea, makeChar) {
-    //character: obj, renderArea: class/id, makeChar: string
-    var charDiv = $("<div class='character' data-name='" + character.name + "'>");
-    var charName = $("<div class='character-name'>").text(character.name);
-    var charImage = $("<img alt='image' class='character-image'>").attr("src", character.imageUrl);
-    var charHealth = $("<div class='character-health'>").text(character.health);
-    charDiv.append(charName).append(charImage).append(charHealth);
-    $(renderArea).append(charDiv);
-    //Capitalizes the first letter in characters name
-    // $('.character').css('textTransform', 'capitalize');
-    // conditional render
-    if (makeChar == 'opponent') {
-      $(charDiv).addClass('opponent');
-    } else if (makeChar == 'comedians') {
-      currDefender = character;
-      $(charDiv).addClass('target-enemy');
-    }
-  };
+  //character: obj, renderArea: class/id, makeChar: string
+  var charDiv = $("<div class='character' data-name='" + character.name + "'>");
+  var charName = $("<div class='character-name'>").text(character.name);
+  var charImage = $("<img alt='image' class='character-image'>").attr("src", character.imageUrl);
+  var charHealth = $("<div class='character-health'>").text(character.health);
+  charDiv.append(charName).append(charImage).append(charHealth);
+  $(renderArea).append(charDiv);
+  //Capitalizes the first letter in characters name
+  // $('.character').css('textTransform', 'capitalize');
+  // conditional render
+  if (makeChar == 'enemy') {
+    $(charDiv).addClass('enemy');
+  } else if (makeChar == 'defender') {
+    currDefender = character;
+    $(charDiv).addClass('target-enemy');
+  }
+};
 
-  // Create function to render game message to DOM
-  var renderMessage = function(message) {
-    var gameMesageSet = $("#gameMessage");
-    var newMessage = $("<div>").text(message);
-    gameMesageSet.append(newMessage);
 
-    if (message == 'clearMessage') {
-      gameMesageSet.text('');
-    }
-  };
+// Create function to render game message to DOM
+var renderMessage = function(message) {
+  var gameMesageSet = $("#gameMessage");
+  var newMessage = $("<div>").text(message);
+  gameMesageSet.append(newMessage);
 
-  var renderCharacters = function(charObj, areaRender) {
-    //render all characters
-    if (areaRender == '#characters-section') {
-      $(areaRender).empty();
-      for (var key in charObj) {
-        if (charObj.hasOwnProperty(key)) {
-          renderOne(charObj[key], areaRender, '');
-        }
+  if (message == 'clearMessage') {
+    gameMesageSet.text('');
+  }
+};
+
+var renderCharacters = function(charObj, areaRender) {
+  //render all characters
+  if (areaRender == '#characters-section') {
+    $(areaRender).empty();
+    for (var key in charObj) {
+      if (charObj.hasOwnProperty(key)) {
+        renderOne(charObj[key], areaRender, '');
       }
     }
+  }
+  //render player character
+  if (areaRender == '#selected-character') {
+    $('#selected-character').prepend("Your Character");       
+    renderOne(charObj, areaRender, '');
+    $('#attack-button').css('visibility', 'visible');
+  }
+  //render combatants
+  if (areaRender == '#available-to-attack-section') {
+      $('#available-to-attack-section').prepend("Choose Your Next Opponent");      
+    for (var i = 0; i < charObj.length; i++) {
 
-//render selected character
-    if (areaRender == '#selected-character') {
-      $('#selected-character').prepend("Your Character");       
-      renderOne(charObj, areaRender, '');
-      $('#joke-button').css('visibility', 'visible');
+      renderOne(charObj[i], areaRender, 'enemy');
     }
-
-    //render opponents
-    if (areaRender == '#show-opponents') {
-        $('#show-opponents').prepend("Choose Your Next Opponent");      
-      for (var i = 0; i < charObj.length; i++) {
-
-        renderOne(charObj[i], areaRender, 'opponent');
+    //render one enemy to defender area
+    $(document).on('click', '.enemy', function() {
+      //select an combatant to fight
+      name = ($(this).data('name'));
+      //if defernder area is empty
+      if ($('#defender').children().length === 0) {
+        renderCharacters(name, '#defender');
+        $(this).hide();
+        renderMessage("clearMessage");
       }
-      //render one enemy to defender area
-      $(document).on('click', '.opponent', function() {
-        //select an combatant to fight
-        name = ($(this).data('name'));
-        //if defernder area is empty
-        if ($('#opponent-area').children().length === 0) {
-          renderCharacters(name, '##opponent-area');
-          $(this).hide();
-          renderMessage("clearMessage");
-        }
-      });
-    }
-     //render defender
-    if (areaRender == '#opponent-area') {
-      $(areaRender).empty();
-      for (var i = 0; i < comedians.length; i++) {
-        //add enemy to defender area
-        if (comedians[i].name == charObj) {
-          $('#opponent-area').append("Your selected opponent")
-          renderOne(comedians[i], areaRender, 'opponent');
-        }
-      }
-    }
-    //re-render defender when attacked
-    if (areaRender == 'playerDamage') {
-      $('#opponent-area').empty();
-      $('#opponent-area').append("Your selected opponent")
-      renderOne(charObj, '#opponent-area', 'opponent');
-      lightsaber.play();
-    }
-    //re-render player character when attacked
-    if (areaRender == 'enemyDamage') {
-      $('#selected-character').empty();
-      renderOne(charObj, '#selected-character', '');
-    }
-    //render defeated enemy
-    if (areaRender == 'enemyDefeated') {
-      $('#opponent-area').empty();
-      var gameStateMessage = "You beat " + charObj.name + ", select another comedian.";
-      renderMessage(gameStateMessage);
-      blaster.play();
-    }
-  };
-  //this is to render all characters for user to choose their computer
-  renderCharacters(characters, '#characters-section');
-  $(document).on('click', '.character', function() {
-    name = $(this).data('name');
-    //if no player char has been selected
-    if (!currSelectedCharacter) {
-      currSelectedCharacter = characters[name];
-      for (var key in characters) {
-        if (key != name) {
-          comedians.push(characters[key]);
-        }
-      }
-      $("#characters-section").hide();
-      renderCharacters(currSelectedCharacter, '#selected-character');
-      //this is to render all characters for user to choose fight against
-      renderCharacters(comedians, '#show-opponents');
-    }
-  });
-
-  // Create functions to enable actions between objects.
-  $("#joke-button").on("click", function() {
-    //if defernder area has enemy
-    if ($('#opponent-area').children().length !== 0) {
-
-
-      // add yo mama jokes!
-
-
-      //defender state change
-      var attackMessage = "You just got burned " + currDefender.name + " for " + (currSelectedCharacter.attack * turnCounter) + " laugh points!";
-      renderMessage("clearMessage");
-
-
-      //combat
-      currDefender.health = currDefender.health - (currSelectedCharacter.attack * turnCounter);
-
-      
-
-
-
-
-      //win condition
-      if (currDefender.health > 0) {
-        //enemy not dead keep playing
-        renderCharacters(currDefender, 'playerDamage');
-        //player state change
-        var counterAttackMessage = currDefender.name + " roasted you back for " + currDefender.enemyAttackBack + " laugh points! Oh Snap!";
-        renderMessage(attackMessage);
-        renderMessage(counterAttackMessage);
-
-        currSelectedCharacter.health = currSelectedCharacter.health - currDefender.enemyAttackBack;
-        renderCharacters(currSelectedCharacter, 'enemyDamage');
-        if (currSelectedCharacter.health <= 0) {
-          renderMessage("clearMessage");
-          restartGame("You lose...GAME OVER!!!");
-          force.play();
-          $("#joke-button-button").unbind("click");
-        }
-
-
-
-} else {
-        renderCharacters(currDefender, 'enemyDefeated');
-        killCount++;
-        if (killCount >= 3) {
-          renderMessage("clearMessage");
-          restartGame("You Won!!!! GAME OVER!!!");
-          setTimeout(function() {
-                    }, 2000);
-
-        }
-      }
-      turnCounter++;
-    } else {
-      renderMessage("clearMessage");
-      renderMessage("No enemy here.");
-      rtwoo.play();
-    }
-  });
-
-//Restarts the game - renders a reset button
-  var restartGame = function(inputEndGame) {
-    //When 'Restart' button is clicked, reload the page.
-    var restart = $('<button class="btn">Restart</button>').click(function() {
-      location.reload();
     });
-    var gameState = $("<div>").text(inputEndGame);
-    $("#gameMessage").append(gameState);
-    $("#gameMessage").append(restart);
-  };
-
+  }
+  //render defender
+  if (areaRender == '#defender') {
+    $(areaRender).empty();
+    for (var i = 0; i < combatants.length; i++) {
+      //add enemy to defender area
+      if (combatants[i].name == charObj) {
+        $('#defender').append("Your selected opponent")
+        renderOne(combatants[i], areaRender, 'defender');
+      }
+    }
+  }
+  //re-render defender when attacked
+  if (areaRender == 'playerDamage') {
+    $('#defender').empty();
+    $('#defender').append("Your selected opponent")
+    renderOne(charObj, '#defender', 'defender');
+    lightsaber.play();
+  }
+  //re-render player character when attacked
+  if (areaRender == 'enemyDamage') {
+    $('#selected-character').empty();
+    renderOne(charObj, '#selected-character', '');
+  }
+  //render defeated enemy
+  if (areaRender == 'enemyDefeated') {
+    $('#defender').empty();
+    var gameStateMessage = "You have defated " + charObj.name + ", you can choose to fight another enemy.";
+    renderMessage(gameStateMessage);
+    blaster.play();
+  }
+};
+//this is to render all characters for user to choose their computer
+renderCharacters(characters, '#characters-section');
+$(document).on('click', '.character', function() {
+  name = $(this).data('name');
+  //if no player char has been selected
+  if (!currSelectedCharacter) {
+    currSelectedCharacter = characters[name];
+    for (var key in characters) {
+      if (key != name) {
+        combatants.push(characters[key]);
+      }
+    }
+    $("#characters-section").hide();
+    renderCharacters(currSelectedCharacter, '#selected-character');
+    //this is to render all characters for user to choose fight against
+    renderCharacters(combatants, '#available-to-attack-section');
+  }
 });
 
+// ----------------------------------------------------------------
+// Create functions to enable actions between objects.
+$("#attack-button").on("click", function() {
+  //if defernder area has enemy
+  if ($('#defender').children().length !== 0) {
+    //defender state change
+    var attackMessage = "You attacked " + currDefender.name + " for " + (currSelectedCharacter.attack * turnCounter) + " damage.";
+    renderMessage("clearMessage");
+    //combat
+    currDefender.health = currDefender.health - (currSelectedCharacter.attack * turnCounter);
 
+    //win condition
+    if (currDefender.health > 0) {
+      //enemy not dead keep playing
+      renderCharacters(currDefender, 'playerDamage');
+      //player state change
+      var counterAttackMessage = currDefender.name + " attacked you back for " + currDefender.enemyAttackBack + " damage.";
+      renderMessage(attackMessage);
+      renderMessage(counterAttackMessage);
 
+      currSelectedCharacter.health = currSelectedCharacter.health - currDefender.enemyAttackBack;
+      renderCharacters(currSelectedCharacter, 'enemyDamage');
+      if (currSelectedCharacter.health <= 0) {
+        renderMessage("clearMessage");
+        restartGame("You have been defeated...GAME OVER!!!");
+        force.play();
+        $("#attack-button").unbind("click");
+      }
+    } else {
+      renderCharacters(currDefender, 'enemyDefeated');
+      killCount++;
+      if (killCount >= 3) {
+        renderMessage("clearMessage");
+        restartGame("You Won!!!! GAME OVER!!!");
+        jediKnow.play();
+        // The following line will play the imperial march:
+        setTimeout(function() {
+        audio.play();
+        }, 2000);
 
+      }
+    }
+    turnCounter++;
+  } else {
+    renderMessage("clearMessage");
+    renderMessage("No enemy here.");
+    rtwoo.play();
+  }
+});
 
+//Restarts the game - renders a reset button
+var restartGame = function(inputEndGame) {
+  //When 'Restart' button is clicked, reload the page.
+  var restart = $('<button class="btn">Restart</button>').click(function() {
+    location.reload();
+  });
+  var gameState = $("<div>").text(inputEndGame);
+  $("#gameMessage").append(gameState);
+  $("#gameMessage").append(restart);
+};
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+});
