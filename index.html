@@ -12,10 +12,11 @@
     <link rel="stylesheet" type="text/css" href="./assets/css/style.css">
   </head>
 <body>
-  
+    
 <div class="container">
     
-    <!-- =========== Header area ============= -->
+    
+    <!-- =========== Other area ============= -->
 <div class="row">
   <div class="col-12">
     <div class="top-banner">
@@ -25,116 +26,102 @@
   </div>
  </div>   
 
-<!-- ============= SELECT CHARACTER ========= -->
+ <div class="container" id="main-game-section">
+    
+  <div class="container col-lg-12" id="characters-section">
+      <div class="container section-title">Select Your Character</div>
+    </div>
+
+    <div class="container col-lg-4" id="selected-character-section">
+      <div class="section-title container"></div>
+      <div id="selected-character">You picked: </div>
+    </div>
+
+     <div class="section-title container col-lg-4">Fight Section
+    	<div id="fight-section">
+      		<button class="btn" id="attack-button">Attack</button>
+      		<div class="jumbotron" id="gameMessage"></div>
+    	</div>   
+    </div>	
+
+    <div id="action">
+      <div class="character-section">
+        <div class="container section-title col-lg-3">
+        	<div id="defender"></div>
+        </div>	
+      </div>
+    </div>   
+     
+    <div class="container" id="available-to-attack-section">
+      <div class="section-title"></div>
+    </div>
+  </div>  
+
+<!-- ============= SELECT CHARACTER ========= 
 
 <div id="main-game-section">
   
-  <div id="characters-section">
-      <div class="row">
-        <div class="col-12">
-          <div class="container section-title"><h2 class='text-center'>Select Your Character</h2></div>
-        </div>
+  
+  <div class="row">
+    <div class="col-12">
+      <div id="characters-section">
+          <h2 class='text-center'>Select Your Character</h2></div>
       </div>
+    </div>
   </div>
       
 
 
-  <!-- ============= display all characters in Cards =============== 
- 
-
-
-  <div class="row">
   
-    <div class="col-3">
-      <div class="card" style="float: left;">
-        <img class="card-img-top select-charImg" src="./assets/images/thumbEddie.png" alt="Card image cap">
-        <div class="card-body">
-        <p class="card-text text-center">Eddie Murphy | Rating: 80</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-3">
-      <div class="card" style="float: left;">
-        <img class="card-img-top select-charImg" src="./assets/images/thumbChappelle.png" alt="Card image cap">
-        <div class="card-body">
-        <p class="card-text text-center">Dave Chappelle | Rating: 70</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-3">
-      <div class="card" style="float: left;">
-        <img class="card-img-top select-charImg" src="./assets/images/thumbChris.png" alt="Card image cap">
-        <div class="card-body">
-        <p class="card-text text-center">Chris Rock | Rating: 100</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-3">
-      <div class="card" style="float: left;">
-        <img class="card-img-top select-charImg" src="./assets/images/thumbRichard.png" alt="Card image cap">
-        <div class="card-body">
-        <p class="card-text text-center">Richard Pryor | Rating: 120</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-  -->
-
-
-
-  
-<!-- ============== SELECTED CHAR / OPPONENTS (2 Col) ============ -->
+<!-- ============== SELECTED CHAR / OPPONENTS (2 Col) ============ 
 <div class="row">
 
     <div class="col-3">  
       <div id="selected-character-section">
-        <div class="section-title container"></div>
-        <div id="selected-character"></div>
+              <div id="selected-character"></div>
       </div>
     </div> 
      
     <div class="col-9">          
       <div id="show-opponents">Show the select-opponent options on right
-        <div class="section-title"></div>
+        <div class="section-title"></div> -
       </div>
      </div>         
    </div>
         
 
-  <!-- This is where the GAME lives -->
+  <!-- This is where the GAME lives 
 <div class="row">
-  <div class="gameReg">
-
+  <div id="action">
     <div class="col-4">
-      <div id="player-area">
-        <p>Player 1</p>
-        <button class="btn" id="joke-button">Yo Mama Joke</button>
-        <div class="jumbotron" id="gameMessage"></div>
+      <div id="selected-character"></div>
+        <p>Player area</p>
       </div>
     </div>
+  </div>  
 
     <div class="col-4">
-      <div id="joke-display">
+      <div id="joke-display"> <!-- why is the Joke button in here? 
         <button class="btn" id="joke-button">Yo Mama Joke</button>
         <div class="jumbotron" id="gameMessage"></div>
       </div>
     </div>
     
-    <div class="col-4">
-      <div id="opponent-area">
-        <p>Opponent area</p>
+  
+    <div id="action">
+      <div class="col-4">
+        <div id="defender">
+            <div id="opponent-area">
+                <p>Opponent area</p>
+           </div>
+        </div>
       </div>
-    </div>
-
-  </div>
+    </div> 
+    
   
 </div>
 
+</div>
 <!-- <div class="row">
   <div class="col-12">
     <div class="game-results">
@@ -150,10 +137,13 @@
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
 
-      <script type="text/javascript" src="./assets/javascript/game.js"></script>
+  <!-- Latest compiled and minified JavaScript for bootstrap -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+
+  <script type="text/javascript" src="./assets/javascript/game.js"></script>
 
   </div>
   </body>
